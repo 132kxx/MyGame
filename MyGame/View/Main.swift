@@ -9,13 +9,15 @@ import SwiftUI
 
 struct Main: View {
     
+    @State var showScreen: Bool = false
+    
     var body: some View {
         VStack {
             //hline: indicator
             HStack {
-                Text("클래스 ?????")
+                Text("CLASS ?????")
                 Spacer()
-                Text("전투력 9999")
+                Text("POWER 9999")
                 }
                 .fontWeight(.bold)
                 .padding(.horizontal, 50)
@@ -23,7 +25,7 @@ struct Main: View {
                 
             //profile: Image
             Image(systemName: "person.fill")
-                .data(url: URL(string: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80")!)
+                .data(url: URL(string: "https://pbs.twimg.com/media/FlwG8luXgAAKj1Z.jpg")!)
                 .clipShape(RoundedRectangle(cornerRadius: 80))
                 .frame(width: 250, height: 250)
                 .shadow(radius: 10)
@@ -31,22 +33,50 @@ struct Main: View {
                 .padding(.bottom, 30)
             
             //buttons
-            HStack(alignment: .center, spacing: 50) {
-                Image(systemName: "doc")
-                    .resizable()
-                    .frame(width: 50, height: 50)
+            HStack(alignment: .bottom, spacing: 50) {
+                Button {
+                    showScreen.toggle()
+                } label: {
+                    VStack {
+                        Image(systemName: "doc")
+                        Text("Previous")
+                    }
+                    .font(.title2)
+                    .shadow(radius: 10)
+                }
+
+                Button {
+                    showScreen.toggle()
+                } label: {
+                    VStack {
+                        Image(systemName: "trophy")
+                        Text("trophy")
+                    }
+                    .font(.title2)
+                    .shadow(radius: 10)
+                }
+                .fullScreenCover(isPresented: $showScreen) {
+                    RichestView()
+                }
                 
-                Image(systemName: "trophy")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                Image(systemName: "xmark.bin")
-                    .resizable()
-                    .frame(width: 50, height: 50)
+                
+                Button {
+                    showScreen.toggle()
+                } label: {
+                    VStack {
+                        Image(systemName: "xmark.bin")
+                        Text("Delete")
+                    }
+                    .font(.title2)
+                    .shadow(radius: 10)
+                }
             }
             .padding(.bottom, 40)
+            .tint(.black)
+            
 
             //next quest indicator
-            Text("다음퀘스트: ??????")
+            Text("Next Quest: ??????")
                 .frame(maxWidth: .infinity, alignment: .center)
             
             //activities
@@ -63,7 +93,7 @@ struct Main: View {
                                     Text("+5")
                                         .foregroundColor(.white)
                                 }
-                            Text("아슬란")
+                            Text("complete lect")
                             
                             Spacer()
                     }
@@ -84,7 +114,7 @@ struct Main: View {
                                     Text("+3")
                                         .foregroundColor(.white)
                                 }
-                            Text("투썸")
+                            Text("target complete")
                             
                             Spacer()
                     }

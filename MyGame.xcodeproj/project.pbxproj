@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B41D59B629A1DCB700D9BD46 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D59B529A1DCB700D9BD46 /* Main.swift */; };
+		B49FC15729A89901004AAB86 /* RichestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49FC15629A89901004AAB86 /* RichestView.swift */; };
 		B4F77915299F507900748249 /* MyGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F77914299F507900748249 /* MyGameApp.swift */; };
 		B4F77917299F507900748249 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F77916299F507900748249 /* ContentView.swift */; };
 		B4F77919299F507B00748249 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4F77918299F507B00748249 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		B41D59B529A1DCB700D9BD46 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		B49FC15629A89901004AAB86 /* RichestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichestView.swift; sourceTree = "<group>"; };
 		B4F77911299F507900748249 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F77914299F507900748249 /* MyGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGameApp.swift; sourceTree = "<group>"; };
 		B4F77916299F507900748249 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 			isa = PBXGroup;
 			children = (
 				B41D59B529A1DCB700D9BD46 /* Main.swift */,
+				B49FC15629A89901004AAB86 /* RichestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41D59B629A1DCB700D9BD46 /* Main.swift in Sources */,
+				B49FC15729A89901004AAB86 /* RichestView.swift in Sources */,
 				B4F77917299F507900748249 /* ContentView.swift in Sources */,
 				B4F77915299F507900748249 /* MyGameApp.swift in Sources */,
 			);
