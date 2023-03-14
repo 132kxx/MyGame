@@ -11,7 +11,8 @@ import SwiftUI
 struct MyGameApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Main()
+                .environmentObject(MainViewModel())
         }
     }
 }

@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		B41D59B629A1DCB700D9BD46 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D59B529A1DCB700D9BD46 /* Main.swift */; };
+		B46D7CB129C00AB400284818 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D7CB029C00AB400284818 /* Quest.swift */; };
+		B46D7CB429C00B1100284818 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D7CB329C00B1100284818 /* MainViewModel.swift */; };
 		B49FC15729A89901004AAB86 /* RichestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49FC15629A89901004AAB86 /* RichestView.swift */; };
 		B4F77915299F507900748249 /* MyGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F77914299F507900748249 /* MyGameApp.swift */; };
-		B4F77917299F507900748249 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F77916299F507900748249 /* ContentView.swift */; };
 		B4F77919299F507B00748249 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4F77918299F507B00748249 /* Assets.xcassets */; };
 		B4F7791D299F507B00748249 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4F7791C299F507B00748249 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B41D59B529A1DCB700D9BD46 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		B46D7CB029C00AB400284818 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		B46D7CB329C00B1100284818 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B49FC15629A89901004AAB86 /* RichestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichestView.swift; sourceTree = "<group>"; };
 		B4F77911299F507900748249 /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F77914299F507900748249 /* MyGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGameApp.swift; sourceTree = "<group>"; };
-		B4F77916299F507900748249 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B4F77918299F507B00748249 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4F7791A299F507B00748249 /* MyGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyGame.entitlements; sourceTree = "<group>"; };
 		B4F7791C299F507B00748249 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -46,6 +48,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B46D7CAF29C00AAB00284818 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B46D7CB029C00AB400284818 /* Quest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B46D7CB229C00B0000284818 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B46D7CB329C00B1100284818 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B4F77908299F507900748249 = {
 			isa = PBXGroup;
 			children = (
@@ -65,9 +83,10 @@
 		B4F77913299F507900748249 /* MyGame */ = {
 			isa = PBXGroup;
 			children = (
+				B46D7CAF29C00AAB00284818 /* Model */,
+				B46D7CB229C00B0000284818 /* ViewModel */,
 				B41D59B429A1DC9700D9BD46 /* View */,
 				B4F77914299F507900748249 /* MyGameApp.swift */,
-				B4F77916299F507900748249 /* ContentView.swift */,
 				B4F77918299F507B00748249 /* Assets.xcassets */,
 				B4F7791A299F507B00748249 /* MyGame.entitlements */,
 				B4F7791B299F507B00748249 /* Preview Content */,
@@ -155,8 +174,9 @@
 			files = (
 				B41D59B629A1DCB700D9BD46 /* Main.swift in Sources */,
 				B49FC15729A89901004AAB86 /* RichestView.swift in Sources */,
-				B4F77917299F507900748249 /* ContentView.swift in Sources */,
+				B46D7CB129C00AB400284818 /* Quest.swift in Sources */,
 				B4F77915299F507900748249 /* MyGameApp.swift in Sources */,
+				B46D7CB429C00B1100284818 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

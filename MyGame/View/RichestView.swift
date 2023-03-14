@@ -16,34 +16,40 @@ struct RichestView: View {
         "개발자되기"
     ]
     
+    @Binding var showScreen: Bool
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .foregroundColor(.clear)
                 .edgesIgnoringSafeArea(.all)
             
-            VStack {
-                Image(systemName: "xmark")
-                    .foregroundColor(.blue)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-                    .background {
-                        Circle()
-                            .stroke(lineWidth: 3)
-                            .foregroundColor(.blue)
-                    }
-                
-                Text("activity".capitalized)
-                    .font(.title)
-                    .padding()
-                    .multilineTextAlignment(.leading)
-                    .underline()
-                
-                ForEach(dataArray, id: \.self) { datas in
-                    Text(datas)
-                        .padding(.bottom)
+            VStack(alignment: .leading) {
+                Button {
+                    showScreen.toggle()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(6)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+
+                Text("activity".capitalized)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding()
+                    .foregroundColor(.blue)
+                
+                List {
+                    ForEach(dataArray, id: \.self) { datas in
+                        Text(datas)
+                            .padding(.bottom)
+                    }
+                }
+                .listStyle(PlainListStyle())
                     
                 
                 
@@ -57,6 +63,6 @@ struct RichestView: View {
 
 struct RichestView_Previews: PreviewProvider {
     static var previews: some View {
-        RichestView()
+        Main()
     }
 }
