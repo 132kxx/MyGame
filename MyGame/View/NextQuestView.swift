@@ -7,16 +7,13 @@
 
 import SwiftUI
 
-struct RichestView: View {
+struct NextQuestView: View {
     
-    var dataArray: [String] = [
-        "complete task",
-        "drink water",
-        "세무사공부하기?",
-        "개발자되기"
-    ]
+    @EnvironmentObject private var vm: MainViewModel
+    @Binding var questFieldText: String
     
-    @Binding var showScreen: Bool
+    
+    @Binding var fullScreen: Bool
     
     var body: some View {
         ZStack {
@@ -26,7 +23,7 @@ struct RichestView: View {
             
             VStack(alignment: .leading) {
                 Button {
-                    showScreen.toggle()
+                    fullScreen.toggle()
                 } label: {
                     Image(systemName: "xmark")
                         .foregroundColor(.gray)
@@ -37,14 +34,14 @@ struct RichestView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
 
-                Text("activity".capitalized)
+                Text("next quest".capitalized)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding()
                     .foregroundColor(.blue)
                 
                 List {
-                    ForEach(dataArray, id: \.self) { datas in
+                    ForEach(vm.dataArray, id: \.self) { datas in
                         Text(datas)
                             .padding(.bottom)
                     }
@@ -61,8 +58,9 @@ struct RichestView: View {
     }
 }
 
-struct RichestView_Previews: PreviewProvider {
+struct NextQuestView_Previews: PreviewProvider {
     static var previews: some View {
         Main()
+            .environmentObject(MainViewModel())
     }
 }

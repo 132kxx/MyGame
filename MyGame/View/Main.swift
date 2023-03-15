@@ -8,30 +8,33 @@
 import SwiftUI
 
 struct Main: View {
+    @EnvironmentObject var vm: MainViewModel
     
     @State var showScreen: Bool = false
-    @EnvironmentObject var vm: MainViewModel
+    @State var questFieldText: String = "???"
+    @State private var fullScreen: Bool = false
     
     var body: some View {
         VStack {
             headerView
                 
             profileImage
+                        
+            nextQuestBtn
             
-//            questBtn
-            
-            Text("Next Quest: ??????")
-                .frame(maxWidth: .infinity, alignment: .center)
-            
+            // activities
             if vm.quest.count > 0 {
-                activities
+                listView
             } else {
                 Spacer()
 
                 emptyView
             }
+            
+            
             Spacer()
         }
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -77,63 +80,40 @@ extension Main {
                 
     }
     
-    var questBtn: some View {
-        HStack(alignment: .bottom, spacing: 50) {
-            Button {
-                showScreen.toggle()
-            } label: {
-                VStack {
-                    Image(systemName: "doc")
-                    Text("Previous")
-                        .font(.subheadline)
-
+    var nextQuestBtn: some View {
+        Button {
+            fullScreen.toggle()
+        } label: {
+            Text("Next Quest: \(questFieldText)")
+                .frame(maxWidth: .infinity, alignment: .center)
+                .fullScreenCover(isPresented: $fullScreen) {
+                    NextQuestView(questFieldText: $questFieldText, fullScreen: $fullScreen)
                 }
-                .font(.title3)
-                .shadow(radius: 10)
-            }
-
-            Button {
-                showScreen.toggle()
-            } label: {
-                VStack {
-                    Image(systemName: "trophy")
-                    Text("trophy")
-                        .font(.subheadline)
-
-                }
-                .font(.title3)
-                .shadow(radius: 10)
-            }
-            .fullScreenCover(isPresented: $showScreen) {
-                RichestView(showScreen: $showScreen)
-            }
-            
-            
-            Button {
-                showScreen.toggle()
-            } label: {
-                VStack {
-                    Image(systemName: "xmark.bin")
-                    Text("Delete")
-                        .font(.subheadline)
-                }
-                .font(.title3)
-                .shadow(radius: 10)
-            }
         }
-        .padding(.bottom, 20)
-        .tint(.black)
+
     }
     
-    var activities: some View {
+    var listView: some View {
         List {
             ForEach(vm.getKeys(), id: \.self) { key in
                 Section(key) {
                     ForEach(vm.getGroupedQuest()[key]!) { item in
-                        Text(item.name)
+                        HStack {
+                            Text(item.name)
+                            Spacer()
+                            Text("\(item.score)")
+                                .foregroundColor(.blue)
+                                .padding(.horizontal,6)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5).stroke()
+                                        .foregroundColor(.blue)
+                                }
+
+                        }
                         }
                     }
             }
+            .listRowSeparator(.hidden)
         }
         .listStyle(PlainListStyle())
     }
