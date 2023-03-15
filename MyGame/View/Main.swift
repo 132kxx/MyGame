@@ -23,8 +23,13 @@ struct Main: View {
             Text("Next Quest: ??????")
                 .frame(maxWidth: .infinity, alignment: .center)
             
-            activities
+            if vm.quest.count > 0 {
+                activities
+            } else {
+                Spacer()
 
+                emptyView
+            }
             Spacer()
         }
     }
@@ -122,38 +127,21 @@ extension Main {
     
     var activities: some View {
         List {
-            let dictionaray = Dictionary(grouping: vm.quest, by: { $0.date })
-            let Dickeys = Array(dictionaray.keys).sorted().reversed()
-            
-
-        
-            ForEach(Dickeys, id: \.self) { key in
+            ForEach(vm.getKeys(), id: \.self) { key in
                 Section(key) {
-                    ForEach(dictionaray[key]!) { value in
-
-                        HStack {
-                            Text("+ \(value.score)")
-                                .foregroundColor(.white)
-                                .padding(6)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(.blue)
-                                }
-                            Text(value.name)
-                                .padding(.horizontal, 6)
+                    ForEach(vm.getGroupedQuest()[key]!) { item in
+                        Text(item.name)
                         }
-
-
-
                     }
-                }
-
             }
-            .listRowSeparator(.hidden)
         }
         .listStyle(PlainListStyle())
-            
+    }
+    
+    var emptyView: some View {
+        VStack {
+            Text("is Empty")
+        }
     }
 }
-
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Quest: Identifiable {
+struct Quest: Identifiable, Hashable {
     let id = UUID().uuidString
     let date: String
     let name: String
