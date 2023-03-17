@@ -10,8 +10,6 @@ import SwiftUI
 struct Main: View {
     @EnvironmentObject var vm: MainViewModel
     
-    @State var showScreen: Bool = false
-    @State var questFieldText: String = "???"
     @State private var fullScreen: Bool = false
     
     var body: some View {
@@ -84,10 +82,10 @@ extension Main {
         Button {
             fullScreen.toggle()
         } label: {
-            Text("Next Quest: \(questFieldText)")
+            Text("Next Quest: \(vm.dataArray[0])")
                 .frame(maxWidth: .infinity, alignment: .center)
                 .fullScreenCover(isPresented: $fullScreen) {
-                    NextQuestView(questFieldText: $questFieldText, fullScreen: $fullScreen)
+                    NextQuestView(fullScreen: $fullScreen)
                 }
         }
 

@@ -38,7 +38,7 @@ class MainViewModel: ObservableObject {
     ]
     
     var dataArray: [String] = [
-        "complete task",
+        "오늘 계획짜기",
         "drink water",
         "세무사공부하기?",
         "개발자되기"
