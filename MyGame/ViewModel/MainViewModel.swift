@@ -27,6 +27,10 @@ class MainViewModel: ObservableObject {
         return Array(getGroupedQuest().keys).sorted().reversed()
     }
     
+    func addDataArray(quest: String) {
+        self.dataArray.append(quest)
+    }
+    
     var dommy = [
         Quest(date: "2월 18일", name: "일하기", score: 5),
         Quest(date: "2월 18일", name: "일어나기", score: 5),
@@ -37,7 +41,7 @@ class MainViewModel: ObservableObject {
 
     ]
     
-    var dataArray: [String] = [
+    @Published var dataArray: [String] = [
         "오늘 계획짜기",
         "drink water",
         "세무사공부하기?",

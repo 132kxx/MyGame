@@ -19,6 +19,7 @@ struct Main: View {
             profileImage
                         
             nextQuestBtn
+
             
             // activities
             if vm.quest.count > 0 {
@@ -83,10 +84,16 @@ extension Main {
             fullScreen.toggle()
         } label: {
             Text("Next Quest: \(vm.dataArray[0])")
-                .frame(maxWidth: .infinity, alignment: .center)
-                .fullScreenCover(isPresented: $fullScreen) {
-                    NextQuestView(fullScreen: $fullScreen)
+                .overlay {
+                    Circle()
+                        .foregroundColor(.red)
+                        .frame(height: 10)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .offset(x: 10, y: -10)
                 }
+        }
+        .fullScreenCover(isPresented: $fullScreen) {
+            NextQuestView(fullScreen: $fullScreen)
         }
 
     }

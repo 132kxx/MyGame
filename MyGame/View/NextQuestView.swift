@@ -11,17 +11,16 @@ struct NextQuestView: View {
     
     @EnvironmentObject private var vm: MainViewModel
     
-    
     @Binding var fullScreen: Bool
     @State var TextFieldText: String = ""
-    @State private var showTextField: Bool = true
+    @State private var showTextField: Bool = false
     
     var body: some View {
             VStack(alignment: .leading) {
                 if showTextField {
-                    fieldBar
+                    textFieldView
                 } else {
-                    headerBtn
+                    headerView
                 }
 
                 listView
@@ -40,33 +39,38 @@ struct NextQuestView_Previews: PreviewProvider {
 }
 
 extension NextQuestView {
-    private var headerBtn: some View {
-        HStack {
-            Button {
-                fullScreen.toggle()
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.gray)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(6)
+    private var headerView: some View {
+            HStack {
+                Button {
+                    fullScreen.toggle()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(6)
+                }
+                
+                Spacer()
+                
+                Button {
+                    showTextField.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                        .foregroundColor(.blue)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(6)
+                }
             }
-            
-            Spacer()
-            
-            Image(systemName: "plus")
-                .foregroundColor(.blue)
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(6)
+            .padding(.horizontal)
+            .frame(height: 50)
         }
-        .padding()
-    }
     
-    private var fieldBar: some View {
+    private var textFieldView: some View {
         HStack {
             TextField("내용을 입력해주세요", text: $TextFieldText)
-                .padding(.horizontal)
+                .padding(.vertical, 6)
                 .background {
                     RoundedRectangle(cornerRadius: 10).stroke()
                         .foregroundColor(.gray)
@@ -74,16 +78,24 @@ extension NextQuestView {
             
             Button {
                 showTextField.toggle()
+                vm.addDataArray(quest: TextFieldText)
+                TextFieldText = ""
             } label: {
-                Text("Submit")
-                    .padding(.horizontal, 6)
+                Text("Add")
+                    .foregroundColor(.white)
+                    .padding(6)
                     .background {
-                        
+                        RoundedRectangle(cornerRadius: 10)
                     }
             }
         }
         .padding(.horizontal)
+        .frame(height: 50)
+
     }
+
+    
+
     
     private var listView: some View {
         List {
