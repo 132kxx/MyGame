@@ -11,6 +11,7 @@ struct Main: View {
     @EnvironmentObject var vm: MainViewModel
     
     @State private var fullScreen: Bool = false
+    @State var newItemAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -85,11 +86,13 @@ extension Main {
         } label: {
             Text("Next Quest: \(vm.dataArray[0])")
                 .overlay {
-                    Circle()
-                        .foregroundColor(.red)
-                        .frame(height: 10)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .offset(x: 10, y: -10)
+                    if newItemAlert {
+                        Circle()
+                            .foregroundColor(.red)
+                            .frame(height: 10)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .offset(x: 10, y: -10)
+                    }
                 }
         }
         .fullScreenCover(isPresented: $fullScreen) {
