@@ -8,45 +8,65 @@
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    @Published var quest: [Quest] = []
+    let codekey = "items_list"
+    
+    @Published var quest: [Quest] = [] {
+        didSet {
+            saveItem()
+        }
+    }
     
     init() {
         getData()
     }
     
-    
     func getData() {
-        quest.append(contentsOf: dommy)
-    }
+       guard
+            let item = UserDefaults.standard.data(forKey: codekey),
+            let decodedItem = try? JSONDecoder().decode([Quest].self, from: item)
+        else { return }
 
-    func getGroupedQuest() -> [String : [Quest]]{
-        return Dictionary(grouping: self.quest) { $0.date }
-    }
-    
-    func getKeys() -> Array<String> {
-        return Array(getGroupedQuest().keys).sorted().reversed()
+        self.quest = decodedItem
     }
     
     func addDataArray(quest: String) {
-        self.dataArray.append(quest)
+        let newElement = Quest(date: "4월 16일", task: quest, score: 5)
+        self.quest.append(newElement)
     }
     
-    var dommy = [
-        Quest(date: "2월 18일", name: "일하기", score: 5),
-        Quest(date: "2월 18일", name: "일어나기", score: 5),
-        Quest(date: "2월 20일", name: "깨기", score: 5),
-        Quest(date: "2월 10일", name: "식사", score: 5),
-        Quest(date: "2월 15일", name: "운동", score: 5),
-        Quest(date: "2월 28일", name: "카페가기", score: 5)
-
-    ]
+    func plusScore() -> Int {
+        var sumScore = 0
+        for i in quest {
+            if i.isFinished {
+                sumScore += i.score
+            }
+        }
+        return sumScore
+    }
     
-    @Published var dataArray: [String] = [
-        "오늘 계획짜기",
-        "drink water",
-        "세무사공부하기?",
-        "개발자되기"
-    ]
+    func editFinish(element: Quest) {
+        if let index = self.quest.firstIndex(where: { $0.id == element.id }) {
+            quest[index] = Quest(id: element.id, date: element.date, task: element.task, score: element.score, isFinished: !element.isFinished)
+        } else {
+            return
+        }
+    }
+    
+    func getDate() -> Array<String> {
+        var dates: [String] = []
+        if quest.count > 0 {
+            let finished = quest.filter{ $0.isFinished == true }
+            dates = Array(Set(finished.map { $0.date }))
+            dates.sort(by: >)
+        }
+        return dates
+    }
+    
+    func saveItem() {
+        if let encodedItem = try? JSONEncoder().encode(quest) {
+            UserDefaults.standard.set(encodedItem, forKey: codekey)
+        }
+    }
 }
 
 

@@ -12,7 +12,7 @@ struct Main: View {
     
     @State private var fullScreen: Bool = false
     @State var newItemAlert: Bool = false
-    
+
     var body: some View {
         VStack {
             headerView
@@ -21,7 +21,6 @@ struct Main: View {
                         
             nextQuestBtn
 
-            
             // activities
             if vm.quest.count > 0 {
                 listView
@@ -60,7 +59,7 @@ extension Main {
             Text("POWER")
                 .fontWeight(.bold)
 
-            Text("30")
+            Text("\(vm.plusScore())")
                 .fontWeight(.bold)
                 .foregroundColor(.blue)
             
@@ -84,7 +83,7 @@ extension Main {
         Button {
             fullScreen.toggle()
         } label: {
-            Text("Next Quest: \(vm.dataArray[0])")
+            Text("Next Quest: \(vm.quest[0].task)")
                 .overlay {
                     if newItemAlert {
                         Circle()
@@ -103,25 +102,20 @@ extension Main {
     
     var listView: some View {
         List {
-            ForEach(vm.getKeys(), id: \.self) { key in
-                Section(key) {
-                    ForEach(vm.getGroupedQuest()[key]!) { item in
+            ForEach(vm.getDate(), id: \.self) { date in
+                Section(date) {
+                    let finished = vm.quest.filter { $0.isFinished == true }
+                    let array = finished.filter { $0.date == date }
+                    ForEach(array) { element in
                         HStack {
-                            Text(item.name)
+                            Text(element.task)
                             Spacer()
-                            Text("\(item.score)")
-                                .foregroundColor(.blue)
-                                .padding(.horizontal,6)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 5).stroke()
-                                        .foregroundColor(.blue)
-                                }
-
+                            Text("\(element.score)")
                         }
-                        }
+                        .listRowSeparator(.hidden)
                     }
+                }
             }
-            .listRowSeparator(.hidden)
         }
         .listStyle(PlainListStyle())
     }
@@ -132,4 +126,3 @@ extension Main {
         }
     }
 }
-

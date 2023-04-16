@@ -106,9 +106,15 @@ extension NextQuestView {
                 .foregroundColor(.blue)
                 .listRowSeparator(.hidden)
             
-            ForEach(vm.dataArray, id: \.self) { datas in
-                Text(datas)
-                    .padding(.bottom)
+            ForEach(vm.quest) { element in
+                if element.isFinished == false {
+                    Text(element.task)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom)
+                        .onTapGesture {
+                            vm.editFinish(element: element)
+                        }
+                }
             }
         }
         .listStyle(PlainListStyle())
