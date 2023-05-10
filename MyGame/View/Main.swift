@@ -18,7 +18,7 @@ struct Main: View {
             headerView
                 
             profileImage
-                        
+
             nextQuestBtn
 
             // activities
@@ -76,30 +76,17 @@ extension Main {
                 .shadow(radius: 10)
                 .aspectRatio(contentMode: .fill)
                 .padding(.bottom, 40)
-                
+
     }
-    
+
     var nextQuestBtn: some View {
         Button {
             fullScreen.toggle()
         } label: {
-            Text("Next Quest: \(vm.quest[0].task)")
-                .overlay {
-                    if newItemAlert {
-                        Circle()
-                            .foregroundColor(.red)
-                            .frame(height: 10)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .offset(x: 10, y: -10)
-                    }
-                }
+            Text("Next Quest: ")
         }
-        .fullScreenCover(isPresented: $fullScreen) {
-            NextQuestView(fullScreen: $fullScreen)
-        }
-
     }
-    
+
     var listView: some View {
         List {
             ForEach(vm.getDate(), id: \.self) { date in
@@ -119,10 +106,11 @@ extension Main {
         }
         .listStyle(PlainListStyle())
     }
-    
+
     var emptyView: some View {
         VStack {
             Text("is Empty")
         }
     }
+    
 }
